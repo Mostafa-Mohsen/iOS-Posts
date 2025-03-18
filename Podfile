@@ -7,7 +7,7 @@ target 'Posts' do
 
   # Pods for Posts
   pod 'Alamofire'
-  pod 'SDWebImage'
+  
 
   target 'PostsTests' do
     inherit! :search_paths
