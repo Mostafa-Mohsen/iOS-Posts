@@ -74,13 +74,19 @@ final class DefaultLogInViewModel: LogInViewModelOutput {
                     
                 case .failure(let error):
                     self.isLoading.send(false)
-                    
+                    self.handle(error: error)
                 }
                 
             }, receiveValue: { _ in })
             .store(in: &cancellable)
     }
-   
+    
+    private func handle(error: NetworkError) {
+        switch error {
+        case .error(_):
+            self.error.send("Failed to log in\nPlease check your user name and password")
+        }
+    }
 }
 
 // MARK: - INPUT. View event methods
