@@ -12,4 +12,14 @@ protocol LogInFlowCoordinatorDependencies  {
     func makeLogInViewController(actions: LogInViewModelActions) -> UIViewController
 }
 
-
+final class LogInFlowCoordinator {
+    
+    private weak var navigationController: UINavigationController?
+    private let dependencies: LogInFlowCoordinatorDependencies
+    
+    init(navigationController: UINavigationController,
+         dependencies: LogInFlowCoordinatorDependencies) {
+        self.navigationController = navigationController
+        self.dependencies = dependencies
+    }
+}
