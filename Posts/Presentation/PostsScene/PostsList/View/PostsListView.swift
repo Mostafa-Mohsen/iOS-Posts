@@ -8,6 +8,62 @@
 import SwiftUI
 import Combine
 
+struct PostsListView: View {
+    @ObservedObject var viewModelWrapper: PostListViewModelWrapper
+    
+    var body: some View {
+        ZStack {
+            List {
+                // post item
+                ForEach(viewModelWrapper.items, id: \.id) { post in
+                    PostListItemView(profileImage: post.profileImage,
+                                     username: post.fullName,
+                                     postText: post.body,
+                                     images: post.postImages,
+                                     didClickOnImage: didClickOnImage)
+                }
+                
+                // list loading view
+                if viewModelWrapper.showListLoader  {
+                    ListLoadingView()
+                        .onAppear() {
+                            viewModelWrapper.viewModel?.loadNextPage()
+                        }
+                }
+            }
+            .listStyle(PlainListStyle())
+            
+            // loading view
+            if viewModelWrapper.showPageLoader {
+                FullScreenLoadingView()
+            }
+        }
+        .alert(isPresented: $viewModelWrapper.showAlert) {
+            Alert(
+                title: Text(viewModelWrapper.viewModel?.errorTitle ?? ""),
+                message: Text(viewModelWrapper.alertMessage),
+                dismissButton: .default(Text(viewModelWrapper.viewModel?.errorDismissText ?? ""))
+            )
+        }
+        .toolbar {
+            Button(action: {
+                viewModelWrapper.viewModel?.didClickSearch()
+            }, label: {
+                Image(systemName: viewModelWrapper.viewModel?.searchIcon ?? "")
+                    .foregroundColor(.gray)
+            })
+        }
+        .onAppear() {
+            viewModelWrapper.viewModel?.viewDidLoad()
+        }
+        .navigationTitle(viewModelWrapper.viewModel?.screenTitle ?? "")
+        .navigationBarHidden(false)
+    }
+    
+    private func didClickOnImage(_ image: String) {
+        viewModelWrapper.viewModel?.didClickOn(image: image)
+    }
+}
 
 final class PostListViewModelWrapper: ObservableObject {
     var viewModel: PostsListViewModel?
@@ -40,4 +96,8 @@ final class PostListViewModelWrapper: ObservableObject {
     }
 }
 
-
+struct PostsListView_Previews: PreviewProvider {
+    static var previews: some View {
+        PostsListView(viewModelWrapper: PostListViewModelWrapper(viewModel: nil))
+    }
+}
