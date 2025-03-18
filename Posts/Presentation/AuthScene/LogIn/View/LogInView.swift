@@ -135,4 +135,10 @@ final class LogInViewModelWrapper: ObservableObject {
         viewModel?.didClickLogInWith(name: name, password: passowrd)
     }
 }
+    
 
+struct LogInView_Previews: PreviewProvider {
+    static var previews: some View {
+        LogInView(viewModelWrapper: LogInViewModelWrapper(viewModel: nil))
+    }
+}
