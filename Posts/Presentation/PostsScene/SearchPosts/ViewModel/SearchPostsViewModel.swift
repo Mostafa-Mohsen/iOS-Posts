@@ -105,7 +105,7 @@ final class DefaultSearchPostsViewModel: SearchPostsViewModelOutput {
                     print("All publishers completed successfully.")
                 case .failure(let error):
                     self.loading.send(.none)
-                    
+                    self.handle(error: error)
                 }
             },
             receiveValue: { postsPage in
@@ -128,7 +128,12 @@ final class DefaultSearchPostsViewModel: SearchPostsViewModelOutput {
             .store(in: &cancellable)
     }
 
-    
+    private func handle(error: NetworkError) {
+        switch error {
+        case .error(_):
+            self.error.send("Failed loading Posts\nTry again later")
+        }
+    }
 
     private func update(query: String) {
         resetPages()
@@ -154,6 +159,6 @@ extension DefaultSearchPostsViewModel: SearchPostsViewModelInput {
     }
     
     func didClickOn(image: String) {
-        
+    
     }
 }
