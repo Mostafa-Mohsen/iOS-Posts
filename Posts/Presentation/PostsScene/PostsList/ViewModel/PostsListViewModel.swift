@@ -8,6 +8,10 @@
 import Foundation
 import Combine
 
+struct PostsListViewModelActions {
+    let showSearchPosts: () -> Void
+    let showImagePreview: (String) -> Void
+}
 
 enum PostsListViewModelLoading {
     case fullScreen
@@ -32,5 +36,4 @@ protocol PostsListViewModelOutput {
     var errorDismissText: String { get }
     var searchIcon: String { get }
 }
-
 
