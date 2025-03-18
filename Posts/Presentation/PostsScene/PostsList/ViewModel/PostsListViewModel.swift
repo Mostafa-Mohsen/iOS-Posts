@@ -37,3 +37,55 @@ protocol PostsListViewModelOutput {
     var searchIcon: String { get }
 }
 
+typealias PostsListViewModel = PostsListViewModelInput & PostsListViewModelOutput
+
+final class DefaultPostsListViewModel: PostsListViewModelOutput {
+
+    private let postsListUseCase: PostsListUseCase
+    private let actions: PostsListViewModelActions?
+
+    private var skip: Int = 0
+    private var totalCount: Int = 0
+    private var limit: Int = 4
+    private var hasMorePages: Bool { totalCount > skip }
+    private var posts: [Post] = []
+    private var cancellable: [AnyCancellable] = []
+    
+    // MARK: - OUTPUT
+    let items = CurrentValueSubject<[PostsListItemViewModel], Never>([])
+    let loading = CurrentValueSubject<PostsListViewModelLoading, Never>(.none)
+    let showListLoader = PassthroughSubject<Bool, Never>()
+    let error = PassthroughSubject<String, Never>()
+    let screenTitle = "Posts"
+    let errorTitle = "Error"
+    let errorDismissText = "Ok"
+    let searchIcon = "magnifyingglass"
+    
+
+    // MARK: - Init
+    init(postsListUseCase: PostsListUseCase,
+        actions: PostsListViewModelActions? = nil) {
+        self.postsListUseCase = postsListUseCase
+        self.actions = actions
+    }
+
+}
+
+// MARK: - INPUT. View event methods
+extension DefaultPostsListViewModel: PostsListViewModelInput {
+    func viewDidLoad() {
+      
+    }
+
+    func loadNextPage() {
+        
+    }
+    
+    func didClickSearch() {
+        
+    }
+    
+    func didClickOn(image: String) {
+        
+    }
+}
