@@ -12,5 +12,17 @@ protocol PostsFlowCoordinatorDependencies  {
     func makePostsListViewController(actions: PostsListViewModelActions) -> UIViewController
 }
 
-
+final class PostsFlowCoordinator {
+    
+    private weak var navigationController: UINavigationController?
+    private let dependencies: PostsFlowCoordinatorDependencies
+    
+    init(navigationController: UINavigationController,
+         dependencies: PostsFlowCoordinatorDependencies) {
+        self.navigationController = navigationController
+        self.dependencies = dependencies
+    }
+    
+    
+}
 
