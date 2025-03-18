@@ -13,7 +13,11 @@ protocol FetchUserUseCase {
     func execute(requestValue: FetchUsersUseCaseRequestValue) -> AnyPublisher<[UserData?], Never>
 }
 
-
+extension FetchUserUseCase {
+    func execute(requestValue: FetchUsersUseCaseRequestValue) -> AnyPublisher<[UserData?], Never> {
+        return userRepository.getUsersBy(ids: requestValue.ids)
+    }
+}
 
 struct FetchUsersUseCaseRequestValue {
     let ids: [Int]
