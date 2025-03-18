@@ -23,4 +23,15 @@ protocol SearchPostsViewModelInput {
     func didClickOn(image: String)
 }
 
+protocol SearchPostsViewModelOutput {
+    var items: CurrentValueSubject<[PostsListItemViewModel], Never> { get }
+    var loading: CurrentValueSubject<SearchPostsViewModelLoading, Never> { get }
+    var showListLoader: PassthroughSubject<Bool, Never> { get }
+    var error: PassthroughSubject<String, Never> { get }
+    var isEmptyResults: PassthroughSubject<Bool, Never> { get }
+    var screenTitle: String { get }
+    var emptyResultsMessage: String { get }
+    var errorTitle: String { get }
+    var errorDismissText: String { get }
+}
 
