@@ -89,7 +89,7 @@ final class DefaultPostsListViewModel: PostsListViewModelOutput {
                     print("All publishers completed successfully.")
                 case .failure(let error):
                     self.loading.send(.none)
-                  
+                    self.handle(error: error)
                 }
             },
             receiveValue: { postsPage in
@@ -100,6 +100,12 @@ final class DefaultPostsListViewModel: PostsListViewModelOutput {
     }
     
 
+    private func handle(error: NetworkError) {
+        switch error {
+        case .error(_):
+            self.error.send("Failed loading Posts\nTry again later")
+        }
+    }
 }
 
 // MARK: - INPUT. View event methods
