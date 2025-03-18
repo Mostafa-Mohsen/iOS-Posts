@@ -8,7 +8,10 @@
 import Foundation
 import Combine
 
-
+struct SearchPostsViewModelActions {
+    let closeSearchPosts: () -> Void
+    let showImagePreview: (String) -> Void
+}
 
 enum SearchPostsViewModelLoading {
     case fullScreen
