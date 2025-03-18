@@ -136,6 +136,6 @@ extension DefaultPostsListViewModel: PostsListViewModelInput {
     }
     
     func didClickOn(image: String) {
-   
+        actions?.showImagePreview(image)
     }
 }

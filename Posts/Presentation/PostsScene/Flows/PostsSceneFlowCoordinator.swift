@@ -11,6 +11,7 @@ import UIKit
 protocol PostsFlowCoordinatorDependencies  {
     func makePostsListViewController(actions: PostsListViewModelActions) -> UIViewController
     func makeSearchPostsViewController(actions: SearchPostsViewModelActions) -> UIViewController
+    func makeImagePreviewViewController(image: String, actions: ImagePreviewViewModelActions) -> UIViewController
 }
 
 final class PostsFlowCoordinator {
@@ -39,7 +40,12 @@ final class PostsFlowCoordinator {
     
     
     private func showImagePreview(image: String) {
-        
+        let actions = ImagePreviewViewModelActions(closeImagePreview: closeImagePreview)
+        let vc = dependencies.makeImagePreviewViewController(image: image, actions: actions)
+        navigationController?.present(vc, animated: true)
+    }
+    
+    private func closeImagePreview() {
     }
 }
 

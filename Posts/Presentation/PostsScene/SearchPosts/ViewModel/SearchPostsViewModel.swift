@@ -153,6 +153,6 @@ extension DefaultSearchPostsViewModel: SearchPostsViewModelInput {
     }
     
     func didClickOn(image: String) {
-    
+        actions?.showImagePreview(image)
     }
 }

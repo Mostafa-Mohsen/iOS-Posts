@@ -76,6 +76,23 @@ final class PostsSceneDIContainer {
                                   actions: actions)
     }
     
+    // MARK: - Image Preview
+    func makeImagePreviewViewController(image: String, actions: ImagePreviewViewModelActions) -> UIViewController {
+        let view = ImagePreviewView(
+            viewModelWrapper: makeImagePreviewViewModelWrapper(image: image,
+                                                               actions: actions))
+        return UIHostingController(rootView: view)
+    }
+    
+    func makeImagePreviewViewModelWrapper(image: String, actions: ImagePreviewViewModelActions) -> ImagePreviewViewModelWrapper {
+        return ImagePreviewViewModelWrapper(viewModel: makeImagePreviewViewModel(image: image,
+                                                                                 actions: actions))
+    }
+    
+    func makeImagePreviewViewModel(image: String, actions: ImagePreviewViewModelActions) -> ImagePreviewViewModel {
+        DefaultImagePreviewViewModel(actions: actions,
+                                     image: image)
+    }
     
     // MARK: - Flow Coordinators
     func makePostsFlowCoordinator(navigationController: UINavigationController) -> PostsFlowCoordinator {
