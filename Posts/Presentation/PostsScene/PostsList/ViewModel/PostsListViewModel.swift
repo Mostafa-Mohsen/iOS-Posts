@@ -69,23 +69,55 @@ final class DefaultPostsListViewModel: PostsListViewModelOutput {
         self.actions = actions
     }
 
+    // MARK: - Private
+    private func appendPage(postsPage: PostsPage) {
+        totalCount = postsPage.total
+        posts += postsPage.posts
+        skip = posts.count
+        let viewModelItems = postsPage.posts.map{ PostsListItemViewModel(post: $0) }
+        items.send(items.value + viewModelItems)
+        showListLoader.send(hasMorePages)
+        loading.send(.none)
+    }
+
+    private func loadPosts(with loading: PostsListViewModelLoading) {
+        self.loading.send(loading)
+        postsListUseCase.execute(requestValue: .init(limit: limit, skip: skip))
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    print("All publishers completed successfully.")
+                case .failure(let error):
+                    self.loading.send(.none)
+                  
+                }
+            },
+            receiveValue: { postsPage in
+                guard let unwrappedPostsPage = postsPage else { return }
+                self.appendPage(postsPage: unwrappedPostsPage)
+            })
+            .store(in: &cancellable)
+    }
+    
+
 }
 
 // MARK: - INPUT. View event methods
 extension DefaultPostsListViewModel: PostsListViewModelInput {
     func viewDidLoad() {
-      
+        loadPosts(with: .fullScreen)
     }
 
     func loadNextPage() {
-        
+        guard hasMorePages, loading.value == .none else { return }
+        loadPosts(with: .nextPage)
     }
     
     func didClickSearch() {
-        
+    
     }
     
     func didClickOn(image: String) {
-        
+       
     }
 }
