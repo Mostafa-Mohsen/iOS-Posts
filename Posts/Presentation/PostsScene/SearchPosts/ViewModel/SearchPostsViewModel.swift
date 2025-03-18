@@ -9,7 +9,6 @@ import Foundation
 import Combine
 
 struct SearchPostsViewModelActions {
-    let closeSearchPosts: () -> Void
     let showImagePreview: (String) -> Void
 }
 
@@ -22,7 +21,6 @@ enum SearchPostsViewModelLoading {
 protocol SearchPostsViewModelInput {
     func loadNextPage()
     func didSearch(query: String)
-    func didCancelSearch()
     func didClickOn(image: String)
 }
 
@@ -152,10 +150,6 @@ extension DefaultSearchPostsViewModel: SearchPostsViewModelInput {
     func loadNextPage() {
         guard hasMorePages, loading.value == .none, !query.isEmpty else { return }
         loadPosts(with: query, loading: .nextPage)
-    }
-    
-    func didCancelSearch() {
-        
     }
     
     func didClickOn(image: String) {
