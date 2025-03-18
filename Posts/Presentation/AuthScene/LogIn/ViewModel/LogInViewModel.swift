@@ -63,11 +63,29 @@ final class DefaultLogInViewModel: LogInViewModelOutput {
         self.logInUseCase = logInUseCase
         self.actions = actions
     }
+    
+    private func authUserWith(name: String, password: String) {
+        isLoading.send(true)
+        logInUseCase.execute(requestValue: .init(name: name, password: password))
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    self.isLoading.send(false)
+                    
+                case .failure(let error):
+                    self.isLoading.send(false)
+                    
+                }
+                
+            }, receiveValue: { _ in })
+            .store(in: &cancellable)
+    }
+   
 }
 
 // MARK: - INPUT. View event methods
 extension DefaultLogInViewModel: LogInViewModelInput {
     func didClickLogInWith(name: String, password: String) {
-     
+        authUserWith(name: name, password: password)
     }
 }
