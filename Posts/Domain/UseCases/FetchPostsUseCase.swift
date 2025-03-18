@@ -8,6 +8,9 @@
 import Foundation
 import Combine
 
+protocol PostsListUseCase: FetchUserUseCase {
+    func execute(requestValue: PostsUseCaseRequestValue) -> AnyPublisher<PostsPage?, NetworkError>
+}
 
 struct PostsUseCaseRequestValue {
     let limit: Int
