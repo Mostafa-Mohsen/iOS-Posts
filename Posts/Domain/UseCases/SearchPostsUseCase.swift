@@ -8,6 +8,10 @@
 import Foundation
 import Combine
 
+protocol SearchPostsUseCase: FetchUserUseCase {
+    func execute(requestValue: SearchPostsUseCaseRequestValue) -> AnyPublisher<PostsPage?, NetworkError>
+}
+
 
 
 struct SearchPostsUseCaseRequestValue {
