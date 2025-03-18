@@ -9,6 +9,13 @@ import Foundation
 import Combine
 
 
+
+enum PostsListViewModelLoading {
+    case fullScreen
+    case nextPage
+    case none
+}
+
 protocol PostsListViewModelInput {
     func viewDidLoad()
     func loadNextPage()
