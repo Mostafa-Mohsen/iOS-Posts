@@ -22,4 +22,10 @@ final class AppDIContainer {
         let dependencies = AuthSceneDIContainer.Dependencies(networkService: networkService)
         return AuthSceneDIContainer(dependencies: dependencies)
     }
+    
+    // MARK: - DIContainers of scenes
+    func makePostsSceneDIContainer() -> PostsSceneDIContainer {
+        let dependencies = PostsSceneDIContainer.Dependencies(networkService: networkService)
+        return PostsSceneDIContainer(dependencies: dependencies)
+    }
 }

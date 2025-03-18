@@ -54,4 +54,14 @@ final class PostsSceneDIContainer {
     }
     
     
+    
+    // MARK: - Flow Coordinators
+    func makePostsFlowCoordinator(navigationController: UINavigationController) -> PostsFlowCoordinator {
+        PostsFlowCoordinator(navigationController: navigationController,
+                             dependencies: self)
+    }
+}
+
+extension PostsSceneDIContainer: PostsFlowCoordinatorDependencies {
+    
 }

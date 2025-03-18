@@ -23,6 +23,20 @@ final class PostsFlowCoordinator {
         self.dependencies = dependencies
     }
     
+    func start() {
+        let actions = PostsListViewModelActions(showSearchPosts: showSearchPosts,
+                                                showImagePreview: showImagePreview)
+        let vc = dependencies.makePostsListViewController(actions: actions)
+        navigationController?.viewControllers = [vc]
+    }
     
+    private func showSearchPosts() {
+       
+    }
+    
+    
+    private func showImagePreview(image: String) {
+        
+    }
 }
 

@@ -18,8 +18,17 @@ final class AppFlowCoordinator {
     }
 
     func start() {
-        let authSceneDIContainer = appDIContainer.makeAuthSceneDIContainer()
-        let flow = authSceneDIContainer.makeLogInFlowCoordinator(navigationController: navigationController)
+//        let authSceneDIContainer = appDIContainer.makeAuthSceneDIContainer()
+//        let flow = authSceneDIContainer.makeLogInFlowCoordinator(navigationController: navigationController)
+//        flow.start()
+      
+        startPostsScene()
+       
+    }
+    
+    func startPostsScene() {
+        let postsSceneDIContainer = appDIContainer.makePostsSceneDIContainer()
+        let flow = postsSceneDIContainer.makePostsFlowCoordinator(navigationController: navigationController)
         flow.start()
     }
 }
