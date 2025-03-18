@@ -46,6 +46,7 @@ final class PostsFlowCoordinator {
     }
     
     private func closeImagePreview() {
+        navigationController?.dismiss(animated: true)
     }
 }
 

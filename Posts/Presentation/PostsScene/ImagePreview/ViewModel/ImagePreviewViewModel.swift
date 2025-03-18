@@ -39,6 +39,6 @@ final class DefaultImagePreviewViewModel: ImagePreviewViewModelOutput {
 // MARK: - INPUT. View event methods
 extension DefaultImagePreviewViewModel: ImagePreviewViewModelInput {
     func didClickCloseImagePreview() {
-        
+        actions?.closeImagePreview()
     }
 }
