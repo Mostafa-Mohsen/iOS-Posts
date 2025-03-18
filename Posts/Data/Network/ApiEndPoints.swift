@@ -11,6 +11,7 @@ import Alamofire
 struct APIEndpoints {
     enum Paths: String {
         case LogIn = "/auth/login"
+        case Posts = "/posts"
         
         var headers: [String: String] {
             switch self {
@@ -31,4 +32,15 @@ struct APIEndpoints {
             parameters: logInRequestDTO.getDictionary()
         )
     }
+    
+    static func getPosts(with postsRequestDTO: PostsRequestDTO) -> Endpoint {
+        return Endpoint(
+            path: Paths.Posts.rawValue,
+            method: .get,
+            parameters: postsRequestDTO.getDictionary()
+        )
+    }
+    
+    
+    
 }
