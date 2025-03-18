@@ -70,11 +70,11 @@ final class DefaultPostsListViewModel: PostsListViewModelOutput {
     }
 
     // MARK: - Private
-    private func appendPage(postsPage: PostsPage) {
+    private func appendPage(postsPage: PostsPage, usersData: [Int: UserDataViewModel]) {
         totalCount = postsPage.total
         posts += postsPage.posts
         skip = posts.count
-        let viewModelItems = postsPage.posts.map{ PostsListItemViewModel(post: $0) }
+        let viewModelItems = postsPage.posts.map{ PostsListItemViewModel(post: $0, user: usersData[$0.userId ?? -1]) }
         items.send(items.value + viewModelItems)
         showListLoader.send(hasMorePages)
         loading.send(.none)
@@ -94,11 +94,23 @@ final class DefaultPostsListViewModel: PostsListViewModelOutput {
             },
             receiveValue: { postsPage in
                 guard let unwrappedPostsPage = postsPage else { return }
-                self.appendPage(postsPage: unwrappedPostsPage)
+                self.loadUsersFor(postPage: unwrappedPostsPage)
             })
             .store(in: &cancellable)
     }
     
+    private func loadUsersFor(postPage: PostsPage) {
+        let ids = postPage.posts.compactMap{ $0.userId }
+        postsListUseCase.execute(requestValue: .init(ids: ids))
+            .sink() { usersData in
+                var usersDict = [Int: UserDataViewModel]()
+                usersData.compactMap { $0 }
+                    .forEach({
+                        usersDict[$0.id] = UserDataViewModel(firstName: $0.firstName, lastName: $0.lastName) })
+                self.appendPage(postsPage: postPage, usersData: usersDict)
+            }
+            .store(in: &cancellable)
+    }
 
     private func handle(error: NetworkError) {
         switch error {
@@ -120,10 +132,10 @@ extension DefaultPostsListViewModel: PostsListViewModelInput {
     }
     
     func didClickSearch() {
-    
+
     }
     
     func didClickOn(image: String) {
-       
+   
     }
 }

@@ -11,10 +11,11 @@ import Combine
 final class DefaultPostsRepository {
 
     internal let networkService: NetworkService
+    internal let cache: UserDataResponseStorage
     
-    
-    init(networkService: NetworkService) {
+    init(networkService: NetworkService, cache: UserDataResponseStorage) {
         self.networkService = networkService
+        self.cache = cache
     }
 }
 

@@ -14,6 +14,7 @@ protocol PostsListUseCase: FetchUserUseCase {
 
 final class DefaultPostsUseCase {
     private let postsRepository: PostsRepository
+    var userRepository: FetchUserRepository { return postsRepository }
     
     init(postsRepository: PostsRepository) {
         self.postsRepository = postsRepository

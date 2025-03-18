@@ -8,6 +8,6 @@
 import Foundation
 import Combine
 
-protocol PostsRepository {
+protocol PostsRepository: FetchUserRepository {
     func getPosts(limit: Int, skip: Int) -> AnyPublisher<PostsPage?, NetworkError>
 }
