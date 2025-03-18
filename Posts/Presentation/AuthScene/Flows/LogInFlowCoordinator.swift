@@ -22,4 +22,17 @@ final class LogInFlowCoordinator {
         self.navigationController = navigationController
         self.dependencies = dependencies
     }
+    
+    func start() {
+        let actions = LogInViewModelActions(showPostsList: showPostsList)
+        let vc = dependencies.makeLogInViewController(actions: actions)
+        
+        navigationController?.viewControllers = [vc]
+    }
+}
+
+extension LogInFlowCoordinator {
+    private func showPostsList() {
+        
+    }
 }

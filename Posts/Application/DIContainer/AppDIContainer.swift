@@ -17,5 +17,9 @@ final class AppDIContainer {
         return DefaultNetworkService(config: config)
     }()
     
-    
+    // MARK: - DIContainers of scenes
+    func makeAuthSceneDIContainer() -> AuthSceneDIContainer {
+        let dependencies = AuthSceneDIContainer.Dependencies(networkService: networkService)
+        return AuthSceneDIContainer(dependencies: dependencies)
+    }
 }

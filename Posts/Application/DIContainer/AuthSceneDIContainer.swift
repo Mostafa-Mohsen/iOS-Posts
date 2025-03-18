@@ -51,7 +51,13 @@ final class AuthSceneDIContainer {
                               actions: actions)
     }
     
-    
+    // MARK: - Flow Coordinators
+    func makeLogInFlowCoordinator(navigationController: UINavigationController) -> LogInFlowCoordinator {
+        LogInFlowCoordinator(navigationController: navigationController,
+                             dependencies: self)
+    }
 }
 
-
+extension AuthSceneDIContainer: LogInFlowCoordinatorDependencies {
+    
+}
