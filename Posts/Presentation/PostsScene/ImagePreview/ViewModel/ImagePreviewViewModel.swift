@@ -13,4 +13,9 @@ protocol ImagePreviewViewModelInput {
     func didClickCloseImagePreview()
 }
 
+protocol ImagePreviewViewModelOutput {
+    var screenTitle: String { get }
+    var image: String { get }
+}
+
 
