@@ -11,9 +11,11 @@ import Combine
 final class DefaultLogInRepository {
 
     private let networkService: NetworkService
+    private let cache: LogInResponseStorage
     
-    init(networkService: NetworkService) {
+    init(networkService: NetworkService, cache: LogInResponseStorage) {
         self.networkService = networkService
+        self.cache = cache
     }
 }
 
@@ -25,6 +27,7 @@ extension DefaultLogInRepository: LogInRepository {
         return networkService.request(endPoint: endpoint, type: LogInResponseDTO.self)
             .map{ (logInResponse) -> LogInToken? in
                 guard let unwrappedResponse = logInResponse else { return nil }
+                self.cache.save(response: unwrappedResponse)
                 return unwrappedResponse.toDomain()
             }
             .receive(on: RunLoop.main)
