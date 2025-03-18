@@ -20,4 +20,25 @@ protocol ImagePreviewViewModelOutput {
     var image: String { get }
 }
 
+typealias ImagePreviewViewModel = ImagePreviewViewModelInput & ImagePreviewViewModelOutput
 
+final class DefaultImagePreviewViewModel: ImagePreviewViewModelOutput {
+    private let actions: ImagePreviewViewModelActions?
+    
+    // MARK: - OUTPUT
+    let screenTitle: String = "Image Preview"
+    let image: String
+    
+    init(actions: ImagePreviewViewModelActions?,
+        image: String) {
+        self.actions = actions
+        self.image = image
+    }
+}
+
+// MARK: - INPUT. View event methods
+extension DefaultImagePreviewViewModel: ImagePreviewViewModelInput {
+    func didClickCloseImagePreview() {
+        
+    }
+}
