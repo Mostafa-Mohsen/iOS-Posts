@@ -8,6 +8,10 @@
 import Foundation
 import Combine
 
+protocol LogInUseCase {
+    func execute(requestValue: LogInsUseCaseRequestValue) -> AnyPublisher<LogInToken?, NetworkError>
+}
+
 
 struct LogInsUseCaseRequestValue {
     let name: String
