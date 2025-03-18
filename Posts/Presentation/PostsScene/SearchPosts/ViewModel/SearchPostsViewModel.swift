@@ -10,6 +10,12 @@ import Combine
 
 
 
+enum SearchPostsViewModelLoading {
+    case fullScreen
+    case nextPage
+    case none
+}
+
 protocol SearchPostsViewModelInput {
     func loadNextPage()
     func didSearch(query: String)
