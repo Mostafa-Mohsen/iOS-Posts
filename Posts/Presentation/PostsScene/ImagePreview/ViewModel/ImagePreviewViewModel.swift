@@ -7,7 +7,9 @@
 
 import Foundation
 
-
+struct ImagePreviewViewModelActions {
+    let closeImagePreview: () -> Void
+}
 
 protocol ImagePreviewViewModelInput {
     func didClickCloseImagePreview()
