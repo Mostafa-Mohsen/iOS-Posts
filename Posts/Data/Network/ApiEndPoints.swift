@@ -12,6 +12,7 @@ struct APIEndpoints {
     enum Paths: String {
         case LogIn = "/auth/login"
         case Posts = "/posts"
+        case Users = "/users"
         
         var headers: [String: String] {
             switch self {
@@ -41,6 +42,13 @@ struct APIEndpoints {
         )
     }
     
+    static func getUserData(with userDataDTO: FetchUserDataRequestDTO) -> Endpoint {
+        return Endpoint(
+            path: Paths.Users.rawValue + "/\(userDataDTO.id)",
+            method: .get,
+            parameters: userDataDTO.getDictionary()
+        )
+    }
     
     
 }
