@@ -23,13 +23,13 @@ struct PostsListItemViewModel: Identifiable {
 }
 
 extension PostsListItemViewModel {
-    init(post: Post) {
+    init(post: Post, user: UserDataViewModel?) {
         id = post.id
         profileImage = PostsListItemViewModel.getProfileImage()
         postImages = Array(PostsListItemViewModel.getPostImages().prefix(Int.random(in: 1...4)))
         body = post.body ?? ""
-        firstName = ""
-        lastName = ""
+        firstName = user?.firstName ?? ""
+        lastName = user?.lastName ?? ""
     }
     
     private static func getProfileImage() -> String {
@@ -51,4 +51,9 @@ extension PostsListItemViewModel {
         ]
         return images
     }
+}
+
+struct UserDataViewModel {
+    let firstName: String?
+    let lastName: String?
 }
