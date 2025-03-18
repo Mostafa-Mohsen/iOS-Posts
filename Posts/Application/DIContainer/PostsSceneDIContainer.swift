@@ -29,6 +29,9 @@ final class PostsSceneDIContainer {
         DefaultPostsUseCase(postsRepository: makePostsListRepository())
     }
     
+    func makeSearchPostsUseCase() -> SearchPostsUseCase {
+        DefaultSearchPostsUseCase(searchPostsRepository: makeSearchPostsRepository())
+    }
     
     // MARK: - Repositories
     func makePostsListRepository() -> PostsRepository {
@@ -36,6 +39,10 @@ final class PostsSceneDIContainer {
                                cache: userDataStorage)
     }
     
+    func makeSearchPostsRepository() -> SearchPostsRepository {
+        DefaultSearchPostsRepository(networkService: dependencies.networkService,
+                                     cache: userDataStorage)
+    }
     
     // MARK: - Posts List
     func makePostsListViewController(actions: PostsListViewModelActions) -> UIViewController {
@@ -53,6 +60,21 @@ final class PostsSceneDIContainer {
                                   actions: actions)
     }
     
+    // MARK: - Search Posts
+    func makeSearchPostsViewController(actions: SearchPostsViewModelActions) -> UIViewController {
+        let view = SearchPostsView(
+            viewModelWrapper: makeSearchPostsViewModelWrapper(actions: actions))
+        return UIHostingController(rootView: view)
+    }
+    
+    func makeSearchPostsViewModelWrapper(actions: SearchPostsViewModelActions) -> SearchPostsViewModelWrapper {
+        return SearchPostsViewModelWrapper(viewModel: makeSearchPostsViewModel(actions: actions))
+    }
+    
+    func makeSearchPostsViewModel(actions: SearchPostsViewModelActions) -> SearchPostsViewModel {
+        DefaultSearchPostsViewModel(searchPostsUseCase: makeSearchPostsUseCase(),
+                                  actions: actions)
+    }
     
     
     // MARK: - Flow Coordinators

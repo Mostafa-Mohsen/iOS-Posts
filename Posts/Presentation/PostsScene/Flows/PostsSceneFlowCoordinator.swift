@@ -10,6 +10,7 @@ import UIKit
 
 protocol PostsFlowCoordinatorDependencies  {
     func makePostsListViewController(actions: PostsListViewModelActions) -> UIViewController
+    func makeSearchPostsViewController(actions: SearchPostsViewModelActions) -> UIViewController
 }
 
 final class PostsFlowCoordinator {
@@ -31,7 +32,9 @@ final class PostsFlowCoordinator {
     }
     
     private func showSearchPosts() {
-       
+        let actions = SearchPostsViewModelActions(showImagePreview: showImagePreview)
+        let vc = dependencies.makeSearchPostsViewController(actions: actions)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     

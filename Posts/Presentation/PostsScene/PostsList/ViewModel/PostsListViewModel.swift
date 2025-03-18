@@ -132,7 +132,7 @@ extension DefaultPostsListViewModel: PostsListViewModelInput {
     }
     
     func didClickSearch() {
-
+        actions?.showSearchPosts()
     }
     
     func didClickOn(image: String) {
