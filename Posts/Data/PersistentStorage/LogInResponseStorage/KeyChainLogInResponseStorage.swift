@@ -42,4 +42,11 @@ extension KeyChainLogInResponseStorage: LogInResponseStorage {
             keyChainStorage.save(key: KeyChainKeys.authKey.rawValue, data: data)
         }
     }
+    
+    func isUserLoggedIn() -> Bool {
+        guard let logInEntity = getLogInEntity(),
+              logInEntity.timeStamp.addingTimeInterval(TimeInterval(LogInTokenTTL.expiration.rawValue * 60)) > Date()
+        else { return false }
+        return true
+    }
 }

@@ -11,4 +11,5 @@ import Combine
 protocol LogInResponseStorage {
     func getLogInResponse() -> AnyPublisher<LogInResponseDTO?, Never>
     func save(response: LogInResponseDTO)
+    func isUserLoggedIn() -> Bool
 }
