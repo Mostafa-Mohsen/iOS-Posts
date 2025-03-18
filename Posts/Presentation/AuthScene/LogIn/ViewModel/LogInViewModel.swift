@@ -8,6 +8,10 @@
 import Foundation
 import Combine
 
+struct LogInViewModelActions {
+    let showPostsList: () -> Void
+}
+
 protocol LogInViewModelInput {
     func didClickLogInWith(name: String, password: String)
 }
@@ -28,3 +32,4 @@ protocol LogInViewModelOutput {
     var errorDismissText: String { get }
     var isLoading: CurrentValueSubject<Bool, Never> { get }
 }
+
