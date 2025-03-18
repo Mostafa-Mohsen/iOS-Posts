@@ -8,6 +8,11 @@
 import Foundation
 import Combine
 
+protocol FetchUserUseCase {
+    var userRepository: FetchUserRepository { get }
+    func execute(requestValue: FetchUsersUseCaseRequestValue) -> AnyPublisher<[UserData?], Never>
+}
+
 
 
 struct FetchUsersUseCaseRequestValue {
