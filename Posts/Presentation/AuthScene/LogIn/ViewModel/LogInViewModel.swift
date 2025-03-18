@@ -71,7 +71,7 @@ final class DefaultLogInViewModel: LogInViewModelOutput {
                 switch completion {
                 case .finished:
                     self.isLoading.send(false)
-                    
+                    self.actions?.showPostsList()
                 case .failure(let error):
                     self.isLoading.send(false)
                     self.handle(error: error)

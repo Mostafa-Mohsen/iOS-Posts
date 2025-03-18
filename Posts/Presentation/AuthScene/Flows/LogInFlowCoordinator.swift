@@ -33,6 +33,6 @@ final class LogInFlowCoordinator {
 
 extension LogInFlowCoordinator {
     private func showPostsList() {
-        
+        (UIApplication.shared.delegate as? AppDelegate)?.appFlowCoordinator?.start()
     }
 }
