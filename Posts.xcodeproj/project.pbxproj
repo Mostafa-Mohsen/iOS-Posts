@@ -29,6 +29,13 @@
 		9063B7E82D88BBFE0096F963 /* KeyChainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9063B7E72D88BBFE0096F963 /* KeyChainStorage.swift */; };
 		9063B7EB2D88BFDB0096F963 /* LogInEntityKCS+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9063B7EA2D88BFDB0096F963 /* LogInEntityKCS+Mapping.swift */; };
 		9063B7ED2D88C07B0096F963 /* KeyChainLogInResponseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9063B7EC2D88C07B0096F963 /* KeyChainLogInResponseStorage.swift */; };
+		90692D682D8B86FD0081C7CB /* PostsListUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90692D672D8B86FD0081C7CB /* PostsListUseCaseMock.swift */; };
+		90692D6A2D8B870D0081C7CB /* PostsRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90692D692D8B870D0081C7CB /* PostsRepositoryMock.swift */; };
+		90692D6C2D8B871A0081C7CB /* NetworkServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90692D6B2D8B871A0081C7CB /* NetworkServiceMock.swift */; };
+		90692D6E2D8B87260081C7CB /* UserDataResponseStorageMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90692D6D2D8B87260081C7CB /* UserDataResponseStorageMock.swift */; };
+		90692D712D8B87AF0081C7CB /* PostsListViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90692D702D8B87AF0081C7CB /* PostsListViewModelTest.swift */; };
+		90692D742D8B87FD0081C7CB /* DefaultPostRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90692D732D8B87FD0081C7CB /* DefaultPostRepositoryTest.swift */; };
+		90692D772D8B88290081C7CB /* FetchPostsUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90692D762D8B88290081C7CB /* FetchPostsUseCaseTest.swift */; };
 		906CA22D2D87466900D0B353 /* SearchPostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906CA22C2D87466900D0B353 /* SearchPostsViewModel.swift */; };
 		906CA22F2D87467700D0B353 /* SearchPostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906CA22E2D87467700D0B353 /* SearchPostsView.swift */; };
 		906CA2312D8749FA00D0B353 /* SearchPostsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906CA2302D8749FA00D0B353 /* SearchPostsUseCase.swift */; };
@@ -116,6 +123,13 @@
 		9063B7E72D88BBFE0096F963 /* KeyChainStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainStorage.swift; sourceTree = "<group>"; };
 		9063B7EA2D88BFDB0096F963 /* LogInEntityKCS+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LogInEntityKCS+Mapping.swift"; sourceTree = "<group>"; };
 		9063B7EC2D88C07B0096F963 /* KeyChainLogInResponseStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainLogInResponseStorage.swift; sourceTree = "<group>"; };
+		90692D672D8B86FD0081C7CB /* PostsListUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsListUseCaseMock.swift; sourceTree = "<group>"; };
+		90692D692D8B870D0081C7CB /* PostsRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsRepositoryMock.swift; sourceTree = "<group>"; };
+		90692D6B2D8B871A0081C7CB /* NetworkServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceMock.swift; sourceTree = "<group>"; };
+		90692D6D2D8B87260081C7CB /* UserDataResponseStorageMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataResponseStorageMock.swift; sourceTree = "<group>"; };
+		90692D702D8B87AF0081C7CB /* PostsListViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsListViewModelTest.swift; sourceTree = "<group>"; };
+		90692D732D8B87FD0081C7CB /* DefaultPostRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPostRepositoryTest.swift; sourceTree = "<group>"; };
+		90692D762D8B88290081C7CB /* FetchPostsUseCaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPostsUseCaseTest.swift; sourceTree = "<group>"; };
 		906CA22C2D87466900D0B353 /* SearchPostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPostsViewModel.swift; sourceTree = "<group>"; };
 		906CA22E2D87467700D0B353 /* SearchPostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPostsView.swift; sourceTree = "<group>"; };
 		906CA2302D8749FA00D0B353 /* SearchPostsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPostsUseCase.swift; sourceTree = "<group>"; };
@@ -325,6 +339,65 @@
 			path = EntityMapping;
 			sourceTree = "<group>";
 		};
+		90692D632D8B86880081C7CB /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				90692D672D8B86FD0081C7CB /* PostsListUseCaseMock.swift */,
+				90692D692D8B870D0081C7CB /* PostsRepositoryMock.swift */,
+				90692D6B2D8B871A0081C7CB /* NetworkServiceMock.swift */,
+				90692D6D2D8B87260081C7CB /* UserDataResponseStorageMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		90692D642D8B86900081C7CB /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				90692D752D8B88150081C7CB /* UseCases */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		90692D652D8B86970081C7CB /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				90692D722D8B87EB0081C7CB /* Repositories */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		90692D662D8B86AD0081C7CB /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				90692D6F2D8B87950081C7CB /* PostsScene */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		90692D6F2D8B87950081C7CB /* PostsScene */ = {
+			isa = PBXGroup;
+			children = (
+				90692D702D8B87AF0081C7CB /* PostsListViewModelTest.swift */,
+			);
+			path = PostsScene;
+			sourceTree = "<group>";
+		};
+		90692D722D8B87EB0081C7CB /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				90692D732D8B87FD0081C7CB /* DefaultPostRepositoryTest.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		90692D752D8B88150081C7CB /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				90692D762D8B88290081C7CB /* FetchPostsUseCaseTest.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
 		906CA2292D87460D00D0B353 /* SearchPosts */ = {
 			isa = PBXGroup;
 			children = (
@@ -415,6 +488,10 @@
 		908E3E022D841F9500D795DF /* PostsTests */ = {
 			isa = PBXGroup;
 			children = (
+				90692D632D8B86880081C7CB /* Mocks */,
+				90692D662D8B86AD0081C7CB /* Presentation */,
+				90692D642D8B86900081C7CB /* Domain */,
+				90692D652D8B86970081C7CB /* Data */,
 				908E3E032D841F9500D795DF /* PostsTests.swift */,
 			);
 			path = PostsTests;
@@ -936,7 +1013,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90692D712D8B87AF0081C7CB /* PostsListViewModelTest.swift in Sources */,
+				90692D6E2D8B87260081C7CB /* UserDataResponseStorageMock.swift in Sources */,
+				90692D772D8B88290081C7CB /* FetchPostsUseCaseTest.swift in Sources */,
+				90692D6C2D8B871A0081C7CB /* NetworkServiceMock.swift in Sources */,
 				908E3E042D841F9500D795DF /* PostsTests.swift in Sources */,
+				90692D682D8B86FD0081C7CB /* PostsListUseCaseMock.swift in Sources */,
+				90692D742D8B87FD0081C7CB /* DefaultPostRepositoryTest.swift in Sources */,
+				90692D6A2D8B870D0081C7CB /* PostsRepositoryMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
